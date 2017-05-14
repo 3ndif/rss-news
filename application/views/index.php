@@ -1,6 +1,6 @@
 <html>
 <head>
-        <title>Welcome to my site</title>
+        <title>Новости</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Font Awesome -->
@@ -18,45 +18,36 @@
                         </div>
                         <div class="manu floatright">
                                 <ul id="nav-top">
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="single.html">single</a></li>
-                                        <li><a href="about.html">about</a></li>
-                                        <li><a href="contact.html">contact</a></li>
+                                        <li><a href="/">Home</a></li>
+                                        <li><a href="contact.html">Контакты</a></li>
+                                        <li><a href="contact.html">Управление</a></li>
                                 </ul>
                         </div>
                 </div>
         </div>
 
-        <!--Clean template by WpFreeware.com-->
-
-
         <div class="fix content_area">
 
-                        <div class="fix top_add_bar">
-                                <div class="addbar_leaderborard"><img src="http://placehold.it/728x90"/></div>
-                        </div>
+                    <div class="fix top_add_bar">
+                            <div class="addbar_leaderborard"><img src="http://placehold.it/728x90"/></div>
+                    </div>
 
-                        <div class="manu_area">
-                                <div class="mainmenu menu-wrap wrap">
-                                        <ul id="nav-bottom">
-                                                <li><a href="">Categories</a></li>
-                                                <li><a href="">Freebies</a></li>
-                                                <li><a href="">Services</a>
-                                                        <ul>
-                                                                <li><a href="">Single item</a></li>
-                                                                <li><a href="">Single item</a></li>
-                                                                <li><a href="">Single item</a></li>
-                                                                <li><a href="">Single item</a></li>
-                                                                <li><a href="">Single item</a></li>
-                                                        </ul>
-                                                </li>
-                                                <li><a href="">Gallery</a></li>
-                                                <li><a href="">About us</a></li>
-                                                <li><a href="">Privacy policy</a></li>
-                                                <li><a href="">Contact us</a></li>
-                                        </ul>
-                                </div>
-                        </div>
+                    <div class="manu_area">
+                            <div class="mainmenu menu-wrap wrap">
+                                <ul id="nav-bottom">
+                                        <li><a href="">Образование</a></li>
+                                        <li><a href="">Прочее</a>
+                                                <ul>
+                                                    <li><a href="">Single item</a></li>
+                                                    <li><a href="">Single item</a></li>
+                                                    <li><a href="">Single item</a></li>
+                                                    <li><a href="">Single item</a></li>
+                                                    <li><a href="">Single item</a></li>
+                                                </ul>
+                                        </li>
+                                </ul>
+                            </div>
+                    </div>
                 <div class="fix wrap content_wrapper">
                         <div class="fix content">
                                 <div class="fix main_content floatleft">
@@ -66,13 +57,13 @@
                                         ?>
 
                                         <div class="fix single_content floatleft">
-                                            <a href="<?= $news->link?>"><img src="<?= $news->img?>" alt=""/></a>
+                                            <a href="<?= $news->source_link?>" target="blank"><img src="<?= $news->img?>" alt=""/></a>
                                             <div class="fix single_content_info">
-                                                    <h1><a href="<?=$news->link?>"><?= $news->title?></a></h1>
-                                                    <p class="author">By Admin In Photography,Wine,Food</p>
-                                                    <p><?= $news->text?></p>
+                                                    <h1><a href="<?=$news->source_link?>" target="blank"><?= $news->title?></a></h1>
+                                                    <p class="author">Источник: </p>
+                                                    <p><?= $news->content?></p>
                                                     <div class="fix post-meta">
-                                                        <p><?= date('d.m.Y')?> |  24 Comments</p>
+                                                        <p><?= date('d.m.Y')?> |  24 Комментария</p>
                                                     </div>
                                             </div>
 
@@ -96,39 +87,30 @@
                                 <div class="fix sidebar floatright">
                                         <div class="fix single_sidebar">
                                                 <div class="popular_post fix">
-                                                        <h2>Popular</h2>
+                                                        <h2>Популярное</h2>
                                                         <div class="fix single_popular">
                                                                 <img src="images/popular.png" class="floatleft"/>
-                                                                <h2>Vestibum Malesuada Etiam Magna</h2>
-                                                                <p>12 Nov, 2012</p>
+                                                                <a href="#"><h2>Заголовок</h2></a>
+                                                                <p>Дата</p>
                                                         </div>
                                                         <div class="fix single_popular">
                                                                 <img src="images/popular.png" class="floatleft"/>
-                                                                <h2>Vestibum Malesuada Etiam Magna</h2>
-                                                                <p>12 Nov, 2012</p>
-                                                        </div>
-                                                        <div class="fix single_popular">
-                                                                <img src="images/popular.png" class="floatleft"/>
-                                                                <h2>Vestibum Malesuada Etiam Magna</h2>
-                                                                <p>12 Nov, 2012</p>
+                                                                <a href="#"><h2>Заголовок</h2></a>
+                                                                <p>Дата</p>
                                                         </div>
                                                 </div>
                                         </div>
                                         <div class="fix single_sidebar">
-                                                        <h2>Search</h2>
-                                                        <input class="search" type="text" placeholder="Search and hit enter"/>
+                                                        <h2>Поиск</h2>
+                                                        <input class="search" type="text" placeholder=""/>
                                         </div>
                                         <div class="fix single_sidebar">
-                                                <h2>A little about me</h2>
-                                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum. Sed posuere consectetur est at mant lobortis. Sed posuere consectetur est lobortis. Fusce  mauris condimentum.</p>
+                                                <h2>Немного обо мне</h2>
+                                                <p>блабла балабалаб бла</p>
                                         </div>
                                         <div class="fix single_sidebar">
-                                                <h2>Categories</h2>
-                                                <a href="">photography(5)</a>
-                                                <a href="">food(9)</a>
-                                                <a href="">Salads(4)</a>
-                                                <a href="">spicy(3)</a>
-                                                <a href="">Wine(5)</a>
+                                                <h2>Категории</h2>
+                                                <a href="№">Образование(5)</a>
                                         </div>
                                 </div>
                         </div>
@@ -142,53 +124,43 @@
 
         </div>
 
-        <!--Clean template by WpFreeware.com-->
-
         <div class="fix footer_top_area">
-            <div class="fix footer_top wrap">
-            <div class="fix footer_top_container">
-                    <div class="fix single_footer floatleft">
-                            <h2>From Twitter</h2>
-                            <p>Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id ultricies vehicula ut id elit. <br/><br/>Cum sociis natoque penatibus et magnis parturient montes, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis. </p>
-                            <br/><p>Cum sociis natoque penatibus et magnis parturient montes, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.</p>
-                    </div>
-                    <div class="fix single_footer floatleft">
-                        <h2>usefull links</h2>
-                        <ul>
-                                <li><a href="">Home</a></li>
-                                <li><a href="">about us</a></li>
-                                <li><a href="">privacy policy</a></li>
-                                <li><a href="">contact us</a></li>
-                        </ul>
-                    </div>
-                    <div class="fix single_footer floatleft">
-                        <div class="popular_post fix">
-                            <h2>Popular</h2>
-                            <div class="fix single_popular">
-                                    <img src="images/popular.png" class="floatleft"/>
-                                    <a href=""><h2>Vestibum Malesuada Etiam Magna</h2></a>
-                                    <p>12 Nov, 2012</p>
-                            </div>
-                            <div class="fix single_popular">
-                                    <img src="images/popular.png" class="floatleft"/>
-                                    <a href=""><h2>Vestibum Malesuada Etiam Magna</h2></a>
-                                    <p>12 Nov, 2012</p>
-                            </div>
-                            <div class="fix single_popular">
-                                    <img src="images/popular.png" class="floatleft"/>
-                                    <a href=""><h2>Vestibum Malesuada Etiam Magna</h2></a>
-                                    <p>12 Nov, 2012</p>
+            <!--<div class="fix footer_top wrap">-->
+<!--                <div class="fix footer_top_container">
+                        <div class="fix single_footer floatleft">
+                                <h2>From Twitter</h2>
+                                <p>Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id ultricies vehicula ut id elit. <br/><br/>Cum sociis natoque penatibus et magnis parturient montes, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis. </p>
+                                <br/><p>Cum sociis natoque penatibus et magnis parturient montes, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.</p>
+                        </div>
+                        <div class="fix single_footer floatleft">
+                            <h2>Полезные ссылки</h2>
+                            <ul>
+                                    <li><a href="">Home</a></li>
+                                    <li><a href="">about us</a></li>
+                                    <li><a href="">privacy policy</a></li>
+                                    <li><a href="">contact us</a></li>
+                            </ul>
+                        </div>
+                        <div class="fix single_footer floatleft">
+                            <div class="popular_post fix">
+                                <h2>Популярное</h2>
+                                <div class="fix single_popular">
+                                        <img src="images/popular.png" class="floatleft"/>
+                                        <a href=""><h2>Заголовок</h2></a>
+                                        <p>Дата</p>
+                                </div>
+                                <div class="fix single_popular">
+                                        <img src="images/popular.png" class="floatleft"/>
+                                        <a href=""><h2>Заголовок</h2></a>
+                                        <p>Дата</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-            </div>
-            </div>
+                </div>-->
+            <!--</div>-->
         </div>
-        <div class="fix footer_area">
+<!--        <div class="fix footer_area">
                 <div class="wrap">
-                <div class="fix copyright_text floatleft">
-                        <p>Designed By <a href="http://www.wpfreeware.com" rel="nofollow">WpFreeware</a></p>
-                </div>
                 <div class="fix social_area floatright">
                         <ul>
                             <li><a href="" class="feed"></a></li>
@@ -201,7 +173,7 @@
                         </ul>
                 </div>
                 </div>
-        </div>
+        </div>-->
         <script type="text/javascript" src="js/placeholder_support_IE.js"></script>
         <script type="text/javascript" src="js/selectnav.min.js"></script>
         <script type="text/javascript">

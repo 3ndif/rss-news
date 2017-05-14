@@ -4,7 +4,7 @@ namespace application\models;
 class PHPMorph extends \phpMorphy{
 
     // Укажите путь к каталогу со словарями
-    protected $dir = 'vendor/phpmorphy-0.3.7/dicts';
+    protected $dir = __DIR__.'/../../vendor/phpmorphy-0.3.7/dicts';
 
     /* Укажите, для какого языка будем использовать словарь.
        Язык указывается как ISO3166 код страны и ISO639 код языка,

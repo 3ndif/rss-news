@@ -19,6 +19,10 @@ class DB {
         };
     }
 
+    public function get(){
+        return $this->instance;
+    }
+
     protected function connect(){
         $dsn = "mysql:host=$this->host;dbname=$this->db;charset=$this->charset";
         $opt = [
