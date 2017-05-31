@@ -4,29 +4,31 @@ namespace application\models;
 class RssGraber {
 
     protected $rssLinks = [
-//        'https://lenta.ru/rss/news',
-//        'https://www.vedomosti.ru/rss/news',
-        'https://tvrain.ru/export/rss/all.xml',
+        'https://lenta.ru/rss/news' => 'lenta.ru',
+        'https://www.vedomosti.ru/rss/news' => 'vedomosti.ru',
+        'https://tvrain.ru/export/rss/all.xml' => 'tvrain.ru',
+        'http://1yar.tv/ru/rss' => '1yar.ru',
     ];
 
     public function get(){
 
         $arrayNews = [];
-        foreach ($this->rssLinks as $link){
+        foreach ($this->rssLinks as $link => $name){
             $rss = simplexml_load_file($link);
-//            var_dump($rss->channel);die;
-            foreach ($rss->channel->item as $item) {
 
+            foreach ($rss->channel->item as $item) {
                 // Проверяем наличие ключевых слов в тексте
-                $types_ids = $this->is_forbidden(dom_import_simplexml($item->description)->nodeValue);
-                if (empty($types_ids)) continue;
+                $resultData = $this->is_forbidden(dom_import_simplexml($item->description)->nodeValue);
+                if (empty($resultData['types_ids'])) continue;
 
                 $news = new News();
-                $news->types_ids = $types_ids;
+                $news->types_ids = $resultData['types_ids'];
+                $news->keywords_ids = $resultData['keywords_ids'];
                 $news->title = $item->title;
                 $news->content  = $item->description;
                 $news->source_link  = $item->link;
                 $news->date_pub  = strtotime($item->pubDate);
+                $news->source_name = $name;
 
                 if (is_object($item->enclosure->attributes)){
                     $news->img = $item->enclosure->attributes()->url;
@@ -49,38 +51,24 @@ class RssGraber {
         $types = Keywords::getTypes();
 
         $types_ids = [];
+        $keywords_ids = [];
         foreach ($types as $type){
             $keywords = Keywords::getWords($type->alias);
-            $keywords = array_map(create_function('$o', 'return mb_strtoupper($o->keyword);'), $keywords);
+//            $keywords = array_map(create_function('$o', 'return mb_strtoupper($o->keyword);'), $keywords);
 
-            $forbiddenWords = $phpmorph->getPseudoRoot($keywords);
-
-//            foreach ($keywords as $keyword){
-////                $fw = $phpmorph->findWord($keyword);
-//                foreach ($phpmorph->findWord($keyword) as $p){
-//                    var_dump($p->getAllForms());
-//                }
-//                var_dump($phpmorph->getBaseForm($keyword));
-//                var_dump($phpmorph->lemmatize($keyword,\phpMorphy::NORMAL));
-//            }
-//            die;
             foreach($keywords as $word){
-                if ($this->isSimilar($word,$stringtocheck)){
+                if ($this->isSimilar(mb_strtoupper($word->keyword),$stringtocheck)){
                     $types_ids[] = $type->id;
+                    $keywords_ids[] = $word->id;
                     break;
                 }
             }
-
-//            foreach ($forbiddenWords as $value) {
-//                if (strlen($value[0]) <= 2) continue;
-//                if (mb_stripos($stringtocheck, $value[0]) !== FALSE) {
-//                    $types_ids[] = $type->id;
-//                    break;
-//                }
-//            }
         }
 
-        return $types_ids;
+        return [
+            'types_ids' => $types_ids,
+            'keywords_ids' => $keywords_ids
+        ];
     }
 
     public function isSimilar($word,$stringtocheck){
@@ -96,7 +84,9 @@ class RssGraber {
         }
 
         $base = $phpmorph->getBaseForm($word);
-        $paradigms = $phpmorph->findWord($word);
+        $findWord = $phpmorph->findWord($word);
+
+        $paradigms = empty($findWord) ? [] : $findWord;
 
         foreach ($paradigms as $p){
             $allForms = $p->getAllForms();
@@ -110,8 +100,6 @@ class RssGraber {
 
     protected function findForRoot($root,$stringtocheck){
         if (mb_stripos($stringtocheck, $root) !== FALSE) {
-//            var_dump(mb_substr($stringtocheck, 0, mb_stripos($stringtocheck, $root)));
-//            var_dump(mb_stripos($stringtocheck, $root));die();
             return true;
         }
 

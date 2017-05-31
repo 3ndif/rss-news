@@ -23,6 +23,9 @@ class Keywords {
 
     public function delete($ids = []){
 
+        // Удаляем новости, связанные с данным словом
+        $this->deleteKeywordsNews($ids);
+
         $ids = implode("','",$ids);
 
         $db = (new DB())->get();
@@ -30,6 +33,20 @@ class Keywords {
         $stmt->execute();
 
         return $stmt;
+    }
+
+    public function deleteKeywordsNews($keywordsIds = []){
+        $ids = implode("','",$keywordsIds);
+
+        $db = (new DB())->get();
+        $stmt = $db->query("SELECT * FROM keywords_news WHERE keywords_id IN ('$ids')");
+        $items = $stmt->fetchAll(\PDO::FETCH_OBJ);
+
+        $news_ids = array_map(create_function('$o', 'return $o->news_id;'), $items);
+
+        $ids = implode("','",$news_ids);
+        $stmt = $db->prepare("DELETE FROM news WHERE id IN ('$ids')");
+        $stmt->execute();
     }
 
     /**

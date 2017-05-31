@@ -37,7 +37,7 @@
         <div class="fix content_area">
 
                     <div class="fix top_add_bar">
-                            <div class="addbar_leaderborard"><img src="http://placehold.it/728x90"/></div>
+                            <!--<div class="addbar_leaderborard"><img src="http://placehold.it/728x90"/></div>-->
                     </div>
 
                     <div class="manu_area">
@@ -77,17 +77,18 @@
                                                         </div>
                                                 </div>
                                         </div>
-                                        <div class="fix single_sidebar">
+<!--                                        <div class="fix single_sidebar">
                                                         <h2>Поиск</h2>
                                                         <input class="search" type="text" placeholder=""/>
-                                        </div>
+                                        </div>-->
                                         <div class="fix single_sidebar">
                                                 <h2>Немного обо мне</h2>
                                                 <p>блабла балабалаб бла</p>
                                         </div>
                                         <div class="fix single_sidebar">
                                                 <h2>Категории</h2>
-                                                <a href="№">Образование(5)</a>
+                                                <a href="/education">Образование(<?= count(application\models\News::getAliasNews(application\models\Keywords::EDUCATION_KEYWORDS_ALIAS))?>)</a>
+                                                <a href="/region">Региональные(<?= count(application\models\News::getAliasNews(application\models\Keywords::REGION_KEYWORDS_ALIAS))?>)</a>
                                         </div>
                                 </div>
                         </div>
@@ -96,7 +97,7 @@
                 </div>
 
                 <div class="fix bottom_add_bar">
-                        <div class="addbar_leaderborard"><img src="http://placehold.it/728x90"/></div>
+                        <!--<div class="addbar_leaderborard"><img src="http://placehold.it/728x90"/></div>-->
                 </div>
 
         </div>

@@ -7,13 +7,15 @@
         ?>
 
         <div class="fix single_content floatleft">
-            <a href="<?= $news->source_link?>" target="blank"><img src="<?= $news->img?>" alt=""/></a>
+            <a href="<?= $news->source_link?>" target="blank">
+                <img src="<?php if (!empty($news->img)) echo $news->img; else echo 'images/home_featured.png' ?>" alt=""/>
+            </a>
             <div class="fix single_content_info">
                     <h1><a href="<?=$news->source_link?>" target="blank"><?= $news->title?></a></h1>
-                    <p class="author">Источник: </p>
-                    <p><?= $news->content?></p>
+                    <p class="author">Источник: <?= $news->source_name?></p>
+                    <div style="overflow: hidden;max-height: 100px;text-overflow: ellipsis;"><p><?= $news->content?></p></div>
                     <div class="fix post-meta">
-                        <p><?= date('d.m.Y')?></p>
+                        <p><?= date('d.m.Y',$news->date_pub)?></p>
                     </div>
             </div>
 
@@ -25,12 +27,12 @@
 
     </div>
 
-    <div class="pagination fix">
+<!--    <div class="pagination fix">
             <a href="">1</a>
             <a href="">1</a>
             <a href="">1</a>
             <a href="">1</a>
             <a href="">1</a>
             <a href="">1</a>
-    </div>
+    </div>-->
 </div>

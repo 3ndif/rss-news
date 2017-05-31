@@ -220,7 +220,7 @@ $(function () {
                 dataType:'json', //or HTML, JSON, etc.
                 success: function(data){
                     console.log(data)
-                    list_container.append('<li class="list-group-item" data-types-id="'+data.types_id+'">'+value+'</li>');
+                    list_container.append('<li class="list-group-item" data-id="'+data.id+'">'+value+'</li>');
                 },
             });
         });
